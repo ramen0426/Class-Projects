@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(35, 54, 95);
+}
+
+body {
+     color:ghostwhite;
+}
+
+a {
+    color:cornflowerblue;
+}
+
+img {
+    display:block;
+    margin: 20px auto;
+    width: 650px;
+}
+
+hr {
+    height: 2px;
+    background-color:black;
+    border-color: black;
+}
+
+#container1 {
+    margin: 20px auto;
+    border: 2px solid;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#container2 {
+    background-color:ghostwhite;
+    color: black;
+    width: auto;
+    margin: 1px auto;
+    border: 5px solid;
+    border-radius: 15px; 
+}
+
+header h1,
+header h2 {
+    text-align: center;
+}
+
+#container3 {
+    background-color:ghostwhite;
+    color: black;
+    width: auto;
+    margin: 1px auto;
+    border: 3px solid;
+    border-radius: 15px; 
+}
