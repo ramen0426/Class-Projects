@@ -1,0 +1,179 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b1a2b;
+    color: #c7d5e0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+#container1 {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 5px;
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #66c0f4;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #66c0f4;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+main {
+    margin-top: 20px;
+}
+
+section {
+    flex: 3;
+}
+
+aside {
+    flex: 1;
+    background-color: #16202d;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #465a6b;
+}
+
+h3, h4 , h5 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+p {
+    margin-bottom: 20px;
+    text-indent: 2em;
+}
+
+
+img {
+    display: block;
+    margin: 30px auto;
+    max-width: 100%;
+    border-radius: 30px;
+}
+
+#container3 {
+    background-color: #1f293a;
+    padding: 20px;
+    border-radius: 30px;
+    margin-top: 30px;
+}
+
+#container4 {
+    background-color: #1f293a;
+    padding: 3px;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+
+ul {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+hr {
+    margin: 40px 0;
+    border: 1px solid #2a475e;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #8f98a0;
+    font-size: 0.9em;
+}
+
+nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1b2838;
+    color: #c7d5e0;
+    text-decoration: none;
+    border-radius: 30px;
+    border: 1px solid #2a475e;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #85bddd;
+    color: #0b1a2b;
+    border-color: #66c0f4;
+}
+
+.steam_deck {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+h3, h4, h5 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.brickclicked, .hammerclicked, .steamdeckclicked {
+    border-color: #000000;
+    background-color: #ffffff;
+    color: #000000;
+}
