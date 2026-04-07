@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE STYLES  */
+
+body {
+    background-color: #121418;
+    color: #c9d1d9;
+    font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+#container1 {
+    width: 100%;
+    margin: auto;
+    padding: 15px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff; 
+}
+
+header {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: #1d2127;
+    border-radius: 8px;
+    border-bottom: 3px solid #58a6ff;
+}
+
+header h1 {
+    font-size: 2em; 
+    letter-spacing: 1px;
+}
+
+header h2 {
+    font-size: 1.1em;
+    color: #58a6ff;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Mobile Navigation */
+nav {
+    margin: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 12px 16px;
+    background-color: #1d2127; 
+    color: #c9d1d9;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: all 0.2s ease;
+}
+
+/* Hover & Active Page Indication */
+nav a:hover, 
+.brickclicked, 
+.hammerclicked, 
+.steamdeckclicked, 
+.historyclicked {
+    background-color: #58a6ff;
+    color: #121418;
+    border-color: #58a6ff;
+}
+
+/* Main Content Area */
+main {
+    margin-top: 15px;
+}
+
+.steam_deck, .history_page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.highlight {
+    font-size: 1.05em;
+    color: #ffffff;
+    border-left: 4px solid #58a6ff;
+    padding-left: 15px;
+    background-color: rgba(88, 166, 255, 0.05);
+    border-radius: 0 8px 8px 0;
+}
+
+aside, #container3, #container4 {
+    background-color: #1d2127;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+}
+
+h3, h4, h5 {
+    text-align: center;
+    margin: 15px 0;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+}
+
+ul {
+    margin: 15px 20px;
+}
+
+main ul li {
+    list-style-type: disc;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+main ul li strong {
+    color: #ffffff; 
+}
+
+hr {
+    margin: 30px 0;
+    border: none;
+    height: 1px;
+    background-color: #30363d;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 0.85em;
+    color: #8b949e; 
+    letter-spacing: 1px;
+}
+
+/* TABLET STYLES */
+
+@media (min-width: 600px) {
+    header h1 {
+        font-size: 2.8em;
+    }
+
+    .steam_deck {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .steam_deck section {
+        flex: 2;
+    }
+    
+    .steam_deck aside {
+        flex: 1;
+    }
+
+    main > ul {
+        columns: 2;
+        column-gap: 20px;
+    }
+}
+
+/* DESKTOP STYLES */
+
+@media (min-width: 900px) {
+    #container1 {
+        max-width: 1100px;
+        padding: 30px;
+    }
+
+    header {
+        padding: 40px 20px;
+    }
+
+    header h1 {
+        font-size: 3.5em;
+    }
+
+    header h2 {
+        font-size: 1.4em;
+    }
+
+    /* Desktop Navigation: Horizontal Pills */
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav a {
+        display: inline-block;
+        border-radius: 20px; 
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+
+    aside, #container3, #container4 {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    aside:hover, #container3:hover, #container4:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .steam_deck {
+        gap: 40px;
+    }
+}
