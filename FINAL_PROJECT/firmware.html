@@ -120,7 +120,7 @@
     </div>
     
     <audio id="bgMusic" loop>
-        <source src="./audio/I_Remember_Clifford.mp3" type="audio/mpeg">
+        <source src="audio/bg_takanaka.mp3" type="audio/mpeg">
     </audio>
 </div>
 
@@ -159,13 +159,16 @@
 
     // 3. Autoplay Attempt
     if (wasPlaying) {
-    music.play()
-        .then(() => {
-            updateUI(true);
-        })
-        .catch(() => {
-            console.log("Playback waiting for user click...");
-        });
+        setTimeout(() => {
+            music.play()
+                .then(() => {
+                    updateUI(true);
+                })
+                .catch((error) => {
+                    updateUI(true);
+                    console.log("Audio waiting for user click. Error ignored to prevent UI reset.");
+                });
+        }, 100);
     }
 
     // 4. Listeners
