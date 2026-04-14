@@ -159,30 +159,30 @@
 
     // 3. Autoplay Attempt
     if (wasPlaying) {
+        const startAudio = () => {
+            music.play().then(() => {
+                updateUI(true);
+                document.removeEventListener('touchstart', startAudio);
+                document.removeEventListener('click', startAudio);
+            }).catch(() => {
+                updateUI(true);
+            });
+        };
+
+        document.addEventListener('touchstart', startAudio);
+        document.addEventListener('click', startAudio);
+
         setTimeout(() => {
             music.play()
                 .then(() => {
                     updateUI(true);
+                    document.removeEventListener('touchstart', startAudio);
+                    document.removeEventListener('click', startAudio);
                 })
-                .catch((error) => {
+                .catch(() => {
                     updateUI(true);
-
-                    const resumeOnTouch = () => {
-                        music.play().then(() => {
-                            updateUI(true);
-                            document.removeEventListener('touchstart', resumeOnTouch);
-                            document.removeEventListener('click', resumeOnTouch);
-                        });
-                    };
-
-                    document.addEventListener('touchstart', resumeOnTouch);
-                    document.addEventListener('click', resumeOnTouch);
-                    
-                    if (music.readyState >= 2) {
-                        music.currentTime = localStorage.getItem('musicTime') || 0;
-                    }
                 });
-        }, 150);
+        }, 100);
     }
 
     // 4. Listeners
