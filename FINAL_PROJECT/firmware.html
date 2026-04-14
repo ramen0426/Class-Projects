@@ -166,7 +166,17 @@
                 })
                 .catch((error) => {
                     updateUI(true);
-                    console.log("Audio waiting for user click. Error ignored to prevent UI reset.");
+                    
+                    const resumeOnTouch = () => {
+                        music.play().then(() => {
+                            updateUI(true);
+                            document.removeEventListener('click', resumeOnTouch);
+                            document.removeEventListener('touchstart', resumeOnTouch);
+                        });
+                    };
+
+                    document.addEventListener('click', resumeOnTouch);
+                    document.addEventListener('touchstart', resumeOnTouch);
                 });
         }, 100);
     }
