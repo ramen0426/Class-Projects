@@ -166,19 +166,23 @@
                 })
                 .catch((error) => {
                     updateUI(true);
-                    
+
                     const resumeOnTouch = () => {
                         music.play().then(() => {
                             updateUI(true);
-                            document.removeEventListener('click', resumeOnTouch);
                             document.removeEventListener('touchstart', resumeOnTouch);
+                            document.removeEventListener('click', resumeOnTouch);
                         });
                     };
 
-                    document.addEventListener('click', resumeOnTouch);
                     document.addEventListener('touchstart', resumeOnTouch);
+                    document.addEventListener('click', resumeOnTouch);
+                    
+                    if (music.readyState >= 2) {
+                        music.currentTime = localStorage.getItem('musicTime') || 0;
+                    }
                 });
-        }, 100);
+        }, 150);
     }
 
     // 4. Listeners
