@@ -120,7 +120,7 @@
     </div>
     
     <audio id="bgMusic" loop>
-        <source src="Audio/i_remember_clifford.mp3" type="audio/mpeg">
+        <source src="audio/i_remember_clifford.mp3" type="audio/mpeg">
     </audio>
 </div>
 
@@ -162,9 +162,8 @@
         music.play()
             .then(() => updateUI(true))
             .catch(() => {
-                updateUI(false);
-                localStorage.setItem('musicPlaying', 'false');
-            });
+                console.log("Playback waiting for user interaction.");
+        });
     }
 
     // 4. Listeners

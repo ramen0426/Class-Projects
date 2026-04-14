@@ -5,4 +5,6 @@
     <li><a href="html5_css/index.html" target="_blank">HTML5 and Intro to CSS</a></li>
     <li><a href="advanced_css/brick.html" target="_blank">Advanced CSS</a></li>
     <li><a href="responsive/brick.html" target="_blank">Responsive Web Design</a></li>
+    <li><a href="FINAL_PROJECT/index.html" target="_blank">Final Project | Html and CSS</a></li>
+
 </ul>
