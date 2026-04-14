@@ -123,7 +123,7 @@
     </div>
     
     <audio id="bgMusic" loop>
-        <source src="audio/i_remember_clifford.mp3" type="audio/mpeg">
+        <source src="audio/I_Remember_Clifford.mp3" type="audio/mpeg">
     </audio>
 </div>
 
@@ -159,12 +159,14 @@
         }
     }
 
-     // 3. Autoplay Attempt
+    // 3. Autoplay Attempt
     if (wasPlaying) {
-        music.play()
-            .then(() => updateUI(true))
-            .catch(() => {
-                console.log("Playback waiting for user interaction.");
+    music.play()
+        .then(() => {
+            updateUI(true);
+        })
+        .catch(() => {
+            console.log("Playback waiting for user click...");
         });
     }
 
