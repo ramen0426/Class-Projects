@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emulation | Gaming Preservation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="emulation.html" class="active">Emulation</a></li>
+            <li><a href="firmware.html">Firmware</a></li>
+            <li><a href="media.html">Chronicle</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header style="text-align: center; margin-bottom: 60px;">
+            <h1>The Digital Engine.</h1>
+            <p style="color: var(--text-dim);">Virtualizing the past to protect the future of play.</p>
+        </header>
+
+        <section class="grid-3" style="margin-bottom: 80px;">
+            <div class="static-card">
+                <h3>Binary Accuracy</h3>
+                <p>Emulation translates original machine code into modern instructions. By mimicking physical silicon paths, we ensure games behave exactly like they did on original hardware.</p>
+            </div>
+            <div class="static-card">
+                <h3>Visual Scaling</h3>
+                <p>Modern engines push beyond original hardware limits, upscaling 240p titles to **4K resolution** while utilizing CRT shaders to maintain the intended look of the era.</p>
+            </div>
+            <div class="static-card">
+                <h3>Preservation</h3>
+                <p>Hardware eventually fails as components like capacitors leak or screens rot. Virtualization ensures that these interactive experiences remain playable for decades to come.</p>
+            </div>
+        </section>
+
+        <section class="grid-2" style="margin-bottom: 80px; align-items: center;">
+            <div>
+                <h2>The Unified Interface</h2>
+                <p style="color: var(--text-dim); margin-bottom: 20px;">Front-ends like **RetroArch** have revolutionized preservation. Instead of managing dozens of individual apps, users can access their entire history through a single, seamless interface designed for handheld ergonomics.</p>
+                <ul style="color: var(--text-dim); padding-left: 20px; line-height: 2.2;">
+                    <li><strong>Save States:</strong> The ability to freeze time and resume anywhere.</li>
+                    <li><strong>Netplay:</strong> Adding modern online multiplayer to retro classics.</li>
+                    <li><strong>RetroAchievements:</strong> Tracking progress with community-made trophies.</li>
+                </ul>
+            </div>
+            <div>
+                <img src="images/retroarch.jpg" alt="RetroArch Interface" class="hardware-img" style="width: 100%;">
+            </div>
+        </section>
+
+        <section style="margin-bottom: 100px; text-align: center;">
+            <div class="static-card" style="display: inline-block; padding: 60px 80px; border: 1px solid rgba(96, 165, 250, 0.2);">
+                <h2 style="margin-bottom: 15px;">Experience the Library</h2>
+                <p style="color: var(--text-dim); margin-bottom: 30px; max-width: 500px;">Ready to explore the world of open-source emulation? RetroArch is available on nearly every modern platform.</p>
+                
+                <a href="https://www.retroarch.com/" target="_blank" style="
+                    display: inline-block;
+                    padding: 16px 40px;
+                    background: #60a5fa;
+                    color: #121418;
+                    text-decoration: none;
+                    border-radius: 50px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                    box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+                ">Discover RetroArch</a>
+            </div>
+        </section>
+
+        <section style="padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <h2 style="text-align: center; margin-bottom: 40px;">Emulation Frameworks</h2>
+            <div class="grid-3">
+                <div class="static-card">
+                    <h4 style="color: #60a5fa;">High-Level (HLE)</h4>
+                    <p style="font-size: 0.85rem;">Simulates the functions of a system rather than the hardware itself. It is highly efficient and perfect for modern handheld PCs.</p>
+                </div>
+                <div class="static-card">
+                    <h4 style="color: #60a5fa;">Low-Level (LLE)</h4>
+                    <p style="font-size: 0.85rem;">Mimics the hardware at a granular level. While it requires significantly more power, it provides the highest level of compatibility.</p>
+                </div>
+                <div class="static-card">
+                    <h4 style="color: #60a5fa;">FPGA Integration</h4>
+                    <p style="font-size: 0.85rem;">Hardware-level emulation that reconfigures logic gates to act as the original console, eliminating software input lag.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 }); // Triggers when 10% of the element is visible
+
+    // Apply this to every static-card on the page
+    document.querySelectorAll('.static-card').forEach((el) => {
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+</script>
+
+<div class="audio-interface">
+    <div class="vinyl-container">
+        <div id="vinylRecord" class="vinyl">
+            <img src="images/takanaka_album.jpg" alt="Album Art" class="album-art">
+        </div>
+        
+        <div class="audio-controls-wrapper">
+            <input type="range" id="volumeSlider" min="0" max="0.3" step="0.005" value="0.1">
+            <button id="audioToggle" class="sound-btn">
+                <span id="soundIcon">🔇</span> Sound Off
+            </button>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="Audio/i_remember_clifford.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('audioToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const interfaceContainer = document.querySelector('.audio-interface');
+
+    // 1. Restore from Memory
+    const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+    const savedTime = localStorage.getItem('musicTime');
+    const savedVolume = localStorage.getItem('musicVolume');
+
+    if (savedTime) music.currentTime = parseFloat(savedTime);
+    
+    if (savedVolume) {
+        music.volume = Math.min(parseFloat(savedVolume), 0.3);
+        volumeSlider.value = music.volume;
+    } else {
+        music.volume = 0.1;
+        volumeSlider.value = 0.1;
+    }
+
+    // 2. Sync UI Function
+    function updateUI(playing) {
+        if (playing) {
+            btn.innerHTML = '<span>🔊</span> Sound On';
+            interfaceContainer.classList.add('playing');
+        } else {
+            btn.innerHTML = '<span>🔇</span> Sound Off';
+            interfaceContainer.classList.remove('playing');
+        }
+    }
+
+    // 3. Autoplay Attempt
+    if (wasPlaying) {
+        music.play()
+            .then(() => updateUI(true))
+            .catch(() => {
+                updateUI(false);
+                localStorage.setItem('musicPlaying', 'false');
+            });
+    }
+
+    // 4. Listeners
+    btn.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            updateUI(true);
+            localStorage.setItem('musicPlaying', 'true');
+        } else {
+            music.pause();
+            updateUI(false);
+            localStorage.setItem('musicPlaying', 'false');
+        }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+        music.volume = e.target.value;
+        localStorage.setItem('musicVolume', e.target.value);
+    });
+
+    // 5. Save progress
+    setInterval(() => {
+        if (!music.paused) {
+            localStorage.setItem('musicTime', music.currentTime);
+        }
+    }, 1000);
+</script>
+
+    <footer style="text-align: center; padding: 80px 20px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px;">
+        <p>&copy; 2026 CITC-1300 Final Project | Digital Preservation Archive&trade;</p>
+    </footer>
+
+</body>
+</html>

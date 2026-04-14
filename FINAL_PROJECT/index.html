@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handhelds & Emulation | The Future of History</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="emulation.html">Emulation</a></li>
+            <li><a href="firmware.html">Firmware</a></li>
+            <li><a href="media.html">Chronicle</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Evolution.</h1>
+            <p>The history of handheld gaming, preserved for the future of gaming. From 8-bit bricks to high-performance hybrids.</p>
+            <img src="images/hero.png" alt="Steam Deck" class="hero-img">
+        </section>
+
+        <div class="container">
+            <section class="grid-2">
+                <div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The Portable Revolution.</h2>
+                    <p style="color: var(--text-dim); margin-bottom: 20px;">Handheld gaming isn't just about playing on the go; it's about the engineering marvels that shrunk entire worlds into the palm of your hand.</p>
+                    
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 2.2;">
+                        <li><strong>1989:</strong> The rise of the 8-bit era with the Game Boy&trade;.</li>
+                        <li><strong>2004:</strong> The dual-screen and high-fidelity shift.</li>
+                        <li><strong>2017:</strong> The hybrid console era begins with Nintendo Switch&reg;.</li>
+                        <li><strong>Today:</strong> The birth of the Handheld PC revolution.</li>
+                    </ul>
+                </div>
+                
+                <div class="static-card">
+                    <h3>Physical Roots.</h3>
+                    <p style="color: var(--text-dim); margin-bottom: 20px;">Explore the devices that defined portable play, from the DMG-01 to the modern hybrids. Every button press is a piece of history.</p>
+                    <a href="hardware.html" style="color: #60a5fa; text-decoration: none; font-weight: 600;">Explore Hardware &rarr;</a>
+                </div>
+            </section>
+
+            <section style="margin-top: 100px; text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Why Preservation Matters.</h2>
+                <p style="color: var(--text-dim); max-width: 850px; margin: 0 auto 40px;">Hardware eventually fails. Batteries bloat, screens rot, and capacitors leak. By documenting these systems and utilizing modern emulation, we ensure that the art of gaming remains playable for decades to come. Preservation is the bridge between nostalgia and the future.</p>
+            </section>
+
+            <section class="grid-3" style="margin-top: 80px;">
+                <div class="static-card">
+                    <h3>Digital Freedom.</h3>
+                    <p style="color: var(--text-dim);">Learn how emulation keeps these classics alive on modern hardware with enhanced visuals.</p>
+                    <a href="emulation.html" style="color: #60a5fa; text-decoration: none; display: block; margin-top: 20px;">Learn More &rarr;</a>
+                </div>
+
+                <div class="static-card">
+                    <h3>Open Ecosystems.</h3>
+                    <p style="color: var(--text-dim);">Dive into the custom firmware and community-driven operating systems that power your play.</p>
+                    <a href="systems.html" style="color: #60a5fa; text-decoration: none; display: block; margin-top: 20px;">View Systems &rarr;</a>
+                </div>
+
+                <div class="static-card">
+                    <h3>The Chronicle.</h3>
+                    <p style="color: var(--text-dim);">Experience history in motion with our curated video archive and hardware analysis.</p>
+                    <a href="media.html" style="color: #60a5fa; text-decoration: none; display: block; margin-top: 20px;">Watch Now &rarr;</a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 }); // Triggers when 10% of the element is visible
+
+    
+    document.querySelectorAll('.static-card').forEach((el) => {
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+</script>
+
+
+<div class="audio-interface">
+    <div class="vinyl-container">
+        <div id="vinylRecord" class="vinyl">
+            <img src="images/takanaka_album.jpg" alt="Album Art" class="album-art">
+        </div>
+        
+        <div class="audio-controls-wrapper">
+            <input type="range" id="volumeSlider" min="0" max="0.3" step="0.005" value="0.1">
+            <button id="audioToggle" class="sound-btn">
+                <span id="soundIcon">🔇</span> Sound Off
+            </button>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="Audio/i_remember_clifford.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('audioToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const interfaceContainer = document.querySelector('.audio-interface');
+
+    // 1. Restore from Memory
+    const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+    const savedTime = localStorage.getItem('musicTime');
+    const savedVolume = localStorage.getItem('musicVolume');
+
+    if (savedTime) music.currentTime = parseFloat(savedTime);
+    
+    if (savedVolume) {
+        music.volume = Math.min(parseFloat(savedVolume), 0.3);
+        volumeSlider.value = music.volume;
+    } else {
+        music.volume = 0.1;
+        volumeSlider.value = 0.1;
+    }
+
+    // 2. Sync UI Function
+    function updateUI(playing) {
+        if (playing) {
+            btn.innerHTML = '<span>🔊</span> Sound On';
+            interfaceContainer.classList.add('playing');
+        } else {
+            btn.innerHTML = '<span>🔇</span> Sound Off';
+            interfaceContainer.classList.remove('playing');
+        }
+    }
+
+    // 3. Autoplay Attempt
+    if (wasPlaying) {
+        music.play()
+            .then(() => updateUI(true))
+            .catch(() => {
+                updateUI(false);
+                localStorage.setItem('musicPlaying', 'false');
+            });
+    }
+
+    // 4. Listeners
+    btn.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            updateUI(true);
+            localStorage.setItem('musicPlaying', 'true');
+        } else {
+            music.pause();
+            updateUI(false);
+            localStorage.setItem('musicPlaying', 'false');
+        }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+        music.volume = e.target.value;
+        localStorage.setItem('musicVolume', e.target.value);
+    });
+
+    // 5. Save progress
+    setInterval(() => {
+        if (!music.paused) {
+            localStorage.setItem('musicTime', music.currentTime);
+        }
+    }, 1000);
+</script>
+    <footer style="text-align: center; padding: 80px 20px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px;">
+        <p>&copy; 2026 CITC-1300 Final Project | Handheld History&trade;</p>
+    </footer>
+
+</body>
+</html>

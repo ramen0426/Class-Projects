@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firmware | Digital DNA</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Scroll-Reveal Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="emulation.html">Emulation</a></li>
+            <li><a href="firmware.html" class="active">Firmware</a></li>
+            <li><a href="media.html">Chronicle</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header style="text-align: center; margin-bottom: 60px;">
+            <h1>Open Ecosystems.</h1>
+            <p style="color: var(--text-dim);">Community software that breathes new life into old plastic.</p>
+        </header>
+
+        <section class="grid-3" style="margin-bottom: 80px;">
+            <div class="static-card">
+                <h3>Optimization</h3>
+                <p>Unlike factory software, community firmware is stripped of "bloatware," focusing purely on **CPU efficiency** and maximizing every minute of battery life.</p>
+            </div>
+            <div class="static-card">
+                <h3>Customization</h3>
+                <p>From custom boot animations to granular **GPU clock control**, these systems give users the power to tune hardware for the perfect experience.</p>
+            </div>
+            <div class="static-card">
+                <h3>Accessibility</h3>
+                <p>Modern handheld OS projects focus on **Instant-On** features, allowing gamers to suspend and resume massive titles in seconds.</p>
+            </div>
+        </section>
+
+        <section class="grid-2" style="margin-bottom: 80px; align-items: center;">
+            <div>
+                <h2>The Power of Linux</h2>
+                <p style="color: var(--text-dim); margin-bottom: 25px;">The shift toward Linux-based systems like **SteamOS** has unlocked a new era of performance. By controlling the entire software stack, developers ensure that demanding AAA titles run smoothly on portable APUs.</p>
+                <ul style="color: var(--text-dim); padding-left: 20px; line-height: 2.2;">
+                    <li><strong>Proton Layer:</strong> Running Windows games natively on Linux.</li>
+                    <li><strong>Gamescope:</strong> Advanced micro-compositor for low latency.</li>
+                    <li><strong>Open Source:</strong> Transparent code that the community can improve.</li>
+                </ul>
+            </div>
+            <div>
+                <img src="images/systems_ui.jpg" alt="SteamOS Interface" class="hardware-img" style="width: 100%;">
+            </div>
+        </section>
+
+        <section style="margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <h2 style="text-align: center; margin-bottom: 40px;">Leading Platforms</h2>
+            <div class="grid-3">
+                <div class="static-card">
+                    <h4 style="color: #60a5fa;">SteamOS</h4>
+                    <p style="font-size: 0.85rem;">The benchmark for handheld PCs, offering a console-like **Deck Verified** experience with a full desktop mode for power users.</p>
+                </div>
+                <div class="static-card">
+                    <h4 style="color: #60a5fa;">OnionOS</h4>
+                    <p style="font-size: 0.85rem;">The definitive retro experience for smaller devices, featuring a **Game Switcher** that makes jumping between classics instant.</p>
+                </div>
+                <div class="static-card">
+                    <h4 style="color: #60a5fa;">Android / Lineage</h4>
+                    <p style="font-size: 0.85rem;">The versatile choice for **Cloud Streaming** and mobile-native titles, offering the widest range of app support in the market.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 80px 20px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;">
+        <p>&copy; 2026 CITC-1300 Final Project | Open Source Ecosystems&trade;</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.static-card, .grid-2').forEach((el) => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+    </script>
+    <div class="audio-interface">
+    <div class="vinyl-container">
+        <div id="vinylRecord" class="vinyl">
+            <img src="images/takanaka_album.jpg" alt="Album Art" class="album-art">
+        </div>
+        
+        <div class="audio-controls-wrapper">
+            <input type="range" id="volumeSlider" min="0" max="0.3" step="0.005" value="0.1">
+            <button id="audioToggle" class="sound-btn">
+                <span id="soundIcon">🔇</span> Sound Off
+            </button>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="Audio/i_remember_clifford.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('audioToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const interfaceContainer = document.querySelector('.audio-interface');
+
+    // 1. Restore from Memory
+    const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+    const savedTime = localStorage.getItem('musicTime');
+    const savedVolume = localStorage.getItem('musicVolume');
+
+    if (savedTime) music.currentTime = parseFloat(savedTime);
+    
+    if (savedVolume) {
+        music.volume = Math.min(parseFloat(savedVolume), 0.3);
+        volumeSlider.value = music.volume;
+    } else {
+        music.volume = 0.1;
+        volumeSlider.value = 0.1;
+    }
+
+    // 2. Sync UI Function
+    function updateUI(playing) {
+        if (playing) {
+            btn.innerHTML = '<span>🔊</span> Sound On';
+            interfaceContainer.classList.add('playing');
+        } else {
+            btn.innerHTML = '<span>🔇</span> Sound Off';
+            interfaceContainer.classList.remove('playing');
+        }
+    }
+
+    // 3. Autoplay Attempt
+    if (wasPlaying) {
+        music.play()
+            .then(() => updateUI(true))
+            .catch(() => {
+                updateUI(false);
+                localStorage.setItem('musicPlaying', 'false');
+            });
+    }
+
+    // 4. Listeners
+    btn.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            updateUI(true);
+            localStorage.setItem('musicPlaying', 'true');
+        } else {
+            music.pause();
+            updateUI(false);
+            localStorage.setItem('musicPlaying', 'false');
+        }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+        music.volume = e.target.value;
+        localStorage.setItem('musicVolume', e.target.value);
+    });
+
+    // 5. Save progress
+    setInterval(() => {
+        if (!music.paused) {
+            localStorage.setItem('musicTime', music.currentTime);
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
