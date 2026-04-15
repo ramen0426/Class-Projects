@@ -125,19 +125,15 @@
 </div>
 
 <script>
-    const music = document.getElementById('bgMusic');
+const music = document.getElementById('bgMusic');
     const btn = document.getElementById('audioToggle');
     const volumeSlider = document.getElementById('volumeSlider');
     const interfaceContainer = document.querySelector('.audio-interface');
 
+    // 1. Restore from Memory
     const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
-    const savedTime = localStorage.getItem('musicTime');
     const savedVolume = localStorage.getItem('musicVolume');
 
-    if (savedTime) {
-        music.currentTime = parseFloat(savedTime);
-    }
-    
     if (savedVolume) {
         music.volume = Math.min(parseFloat(savedVolume), 0.3);
         volumeSlider.value = music.volume;
@@ -146,6 +142,7 @@
         volumeSlider.value = 0.1;
     }
 
+    // 2. Sync UI Function
     function updateUI(playing) {
         if (playing) {
             btn.innerHTML = '<span>🔊</span> Sound On';
@@ -156,25 +153,30 @@
         }
     }
 
+    // 3. Autoplay / Resume Logic
     if (wasPlaying) {
         updateUI(true);
 
-        const startAudio = () => {
-            const currentTime = localStorage.getItem('musicTime');
-            if (currentTime) music.currentTime = parseFloat(currentTime);
+        const resumeTrack = () => {
+            
+            const nowTime = localStorage.getItem('musicTime');
+            if (nowTime) {
+                music.currentTime = parseFloat(nowTime);
+            }
             
             music.play().then(() => {
                 updateUI(true);
-                window.removeEventListener('touchstart', startAudio);
-                window.removeEventListener('click', startAudio);
+                window.removeEventListener('touchstart', resumeTrack);
+                window.removeEventListener('click', resumeTrack);
             }).catch(() => {
                 updateUI(true);
             });
         };
 
-        window.addEventListener('touchstart', startAudio);
-        window.addEventListener('click', startAudio);
+        window.addEventListener('touchstart', resumeTrack);
+        window.addEventListener('click', resumeTrack);
 
+        // Desktop attempt
         music.play().then(() => {
             updateUI(true);
         }).catch(() => {
@@ -182,10 +184,11 @@
         });
     }
 
+    // 4. Listeners
     btn.addEventListener('click', () => {
         if (music.paused) {
-            const currentTime = localStorage.getItem('musicTime');
-            if (currentTime) music.currentTime = parseFloat(currentTime);
+            const nowTime = localStorage.getItem('musicTime');
+            if (nowTime) music.currentTime = parseFloat(nowTime);
             music.play();
             updateUI(true);
             localStorage.setItem('musicPlaying', 'true');
@@ -201,8 +204,9 @@
         localStorage.setItem('musicVolume', e.target.value);
     });
 
+    // 5. Accurate Progress Save
     music.addEventListener('timeupdate', () => {
-        if (!music.paused) {
+        if (!music.paused && music.currentTime > 0) {
             localStorage.setItem('musicTime', music.currentTime);
         }
     });
