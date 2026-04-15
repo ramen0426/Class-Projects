@@ -26,19 +26,19 @@
         </header>
 
         <section class="grid-3" style="margin-bottom: 80px;">
-            <div class="static-card">
-                <h3>Binary Accuracy</h3>
-                <p>Emulation translates original machine code into modern instructions. By mimicking physical silicon paths, we ensure games behave exactly like they did on original hardware.</p>
-            </div>
-            <div class="static-card">
-                <h3>Visual Scaling</h3>
-                <p>Modern engines push beyond original hardware limits, upscaling 240p titles to **4K resolution** while utilizing CRT shaders to maintain the intended look of the era.</p>
-            </div>
-            <div class="static-card">
-                <h3>Preservation</h3>
-                <p>Hardware eventually fails as components like capacitors leak or screens rot. Virtualization ensures that these interactive experiences remain playable for decades to come.</p>
-            </div>
-        </section>
+    <div class="static-card">
+        <h2>Binary Accuracy</h2>
+        <p>Emulation translates original machine code into modern instructions...</p>
+    </div>
+    <div class="static-card">
+        <h2>Visual Scaling</h2>
+        <p>Modern engines push beyond original hardware limits...</p>
+    </div>
+    <div class="static-card">
+        <h2>Preservation</h2>
+        <p>Hardware eventually fails as components like capacitors leak...</p>
+    </div>
+</section>
 
         <section class="grid-2" style="margin-bottom: 80px; align-items: center;">
             <div>
@@ -75,22 +75,23 @@
         </section>
 
         <section style="padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <h2 style="text-align: center; margin-bottom: 40px;">Emulation Frameworks</h2>
-            <div class="grid-3">
-                <div class="static-card">
-                    <h4 style="color: #60a5fa;">High-Level (HLE)</h4>
-                    <p style="font-size: 0.85rem;">Simulates the functions of a system rather than the hardware itself. It is highly efficient and perfect for modern handheld PCs.</p>
-                </div>
-                <div class="static-card">
-                    <h4 style="color: #60a5fa;">Low-Level (LLE)</h4>
-                    <p style="font-size: 0.85rem;">Mimics the hardware at a granular level. While it requires significantly more power, it provides the highest level of compatibility.</p>
-                </div>
-                <div class="static-card">
-                    <h4 style="color: #60a5fa;">FPGA Integration</h4>
-                    <p style="font-size: 0.85rem;">Hardware-level emulation that reconfigures logic gates to act as the original console, eliminating software input lag.</p>
-                </div>
-            </div>
-        </section>
+    <h2 style="text-align: center; margin-bottom: 40px;">Emulation Frameworks</h2>
+    <div class="grid-3">
+        <div class="static-card">
+            <h3 style="color: #60a5fa;">High-Level (HLE)</h3>
+            <p style="font-size: 0.85rem;">Simulates the functions of a system rather than the hardware itself...</p>
+        </div>
+        <div class="static-card">
+            <h3 style="color: #60a5fa;">Low-Level (LLE)</h3>
+            <p style="font-size: 0.85rem;">Mimics the hardware at a granular level...</p>
+        </div>
+        <div class="static-card">
+            <h3 style="color: #60a5fa;">FPGA Integration</h3>
+            <p style="font-size: 0.85rem;">Hardware-level emulation that reconfigures logic gates...</p>
+        </div>
+    </div>
+</section>
+
     </main>
     <script>
     const observer = new IntersectionObserver((entries) => {
