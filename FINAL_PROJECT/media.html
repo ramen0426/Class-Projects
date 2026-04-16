@@ -9,13 +9,25 @@
 </head>
 <body>
     <nav>
-        <ul>
+    <div class="nav-container">
+        <input type="checkbox" id="menu-toggle">
+        
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <label for="menu-toggle" class="menu-overlay"></label>
+
+        <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="hardware.html">Hardware</a></li>
             <li><a href="emulation.html">Emulation</a></li>
             <li><a href="firmware.html">Firmware</a></li>
             <li><a href="media.html" class="active">Chronicle</a></li>
         </ul>
+        </div>
     </nav>
 
     <main class="container">

@@ -416,3 +416,131 @@ img {
     font-size: 1.25rem;
     letter-spacing: -0.02em;
 }
+
+/* --- TABLET GRID FIX --- */
+@media (max-width: 1024px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 .static-card:nth-child(3) {
+        grid-column: span 2;
+    }
+
+    /* Ensure images don't get squished */
+    .hardware-img, .hero img {
+        width: 100% !important;
+        max-width: 600px;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+/* --- MOBILE GRID FIX --- */
+@media (max-width: 768px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .grid-3 .static-card:nth-child(3) {
+        grid-column: span 1;
+    }
+}
+
+/* --- HAMBURGER MENU CSS --- */
+#menu-toggle { display: none; }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    z-index: 1100;
+    position: absolute; 
+    right: 20px;
+}
+
+.hamburger span {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* --- THE CLOSE-OUT OVERLAY --- */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+#menu-toggle:checked ~ .menu-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #121418;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: 10px 0 50px rgba(0,0,0,0.5);
+    }
+
+    /* Slide menu in when clicked */
+    #menu-toggle:checked ~ .nav-menu {
+        left: 0;
+    }
+
+    /* Transform lines into an 'X' */
+    #menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    #menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
+
+/* --- FIX: Small Hero Banner on Tablets --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero img {
+        width: 95% !important;
+        max-width: 900px;
+        margin: 30px auto;
+    }
+}
+
+/* --- FIX: Large Music Pill on Phones --- */
+@media (max-width: 600px) {
+    .audio-interface {
+        transform: scale(0.75);
+        transform-origin: bottom right;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    /* Tighter spacing inside the pill for mobile */
+    .vinyl-container {
+        gap: 12px;
+        padding: 8px 15px;
+    }
+}
